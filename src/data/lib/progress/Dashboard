@@ -1,0 +1,129 @@
+
+Action: file_editor create /app/frontend/src/pages/Dashboard.jsx --file-text "import React from \"react\";
+import Navbar from \"@/components/Navbar\";
+import MotivationalBanner from \"@/components/MotivationalBanner\";
+import TopicCard from \"@/components/TopicCard\";
+import { SUBJECTS, TOPICS, getTopicsForSubject } from \"@/data/topics\";
+import { BookOpen, Beaker, Calculator, Heart } from \"lucide-react\";
+
+const subjectIcons = {
+  math: Calculator,
+  science: Beaker,
+  english: BookOpen,
+};
+
+const Dashboard = () => {
+  return (
+    <div className=\"min-h-screen\">
+      <Navbar />
+      <main className=\"mx-auto max-w-7xl px-5 sm:px-8 pt-6 sm:pt-10 pb-24\">
+        <MotivationalBanner />
+
+        <section id=\"subjects\" className=\"mt-14 sm:mt-20\">
+          <div className=\"flex items-end justify-between flex-wrap gap-4\">
+            <div>
+              <p className=\"font-display text-sm font-bold uppercase tracking-widest text-stone-500\">
+                Your subjects
+              </p>
+              <h2
+                data-testid=\"subjects-heading\"
+                className=\"font-display mt-1 text-3xl sm:text-4xl font-bold text-stone-900\"
+              >
+                Where do you want to level up today?
+              </h2>
+            </div>
+            <p className=\"max-w-md text-sm sm:text-base font-semibold text-stone-600\">
+              Pick any card. Each topic has a short lesson, then a quick 4-question
+              practice. Earn stars along the way.
+            </p>
+          </div>
+
+          <div className=\"mt-8 space-y-14\">
+            {SUBJECTS.map((subject) => {
+              const topics = getTopicsForSubject(subject.id);
+              const Icon = subjectIcons[subject.id] || BookOpen;
+              return (
+                <div key={subject.id} data-testid={`subject-section-${subject.id}`}>
+                  <div className=\"flex items-center gap-3\">
+                    <span
+                      className=\"inline-flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-stone-900 brut-shadow-sm\"
+                      style={{ background: subject.color }}
+                    >
+                      <Icon strokeWidth={3} className=\"h-5 w-5 text-stone-900\" />
+                    </span>
+                    <div>
+                      <h3 className=\"font-display text-2xl font-bold text-stone-900\">
+                        {subject.name}
+                      </h3>
+                      <p className=\"text-sm font-semibold text-stone-600\">
+                        {subject.tag}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className=\"mt-5 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3\">
+                    {topics.map((topic) => (
+                      <TopicCard key={topic.id} topic={topic} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className=\"mt-20\">
+          <div
+            data-testid=\"how-it-works\"
+            className=\"rounded-3xl border-[3px] border-stone-900 bg-white brut-shadow p-6 sm:p-10\"
+          >
+            <div className=\"grid gap-8 md:grid-cols-3\">
+              {[
+                {
+                  n: \"01\",
+                  title: \"Read a friendly lesson\",
+                  body: \"No wall-of-text. Short chunks, real examples, everyday words.\",
+                },
+                {
+                  n: \"02\",
+                  title: \"Try 4 quick questions\",
+                  body: \"See what stuck. Wrong answers show a tiny hint, not a red X of doom.\",
+                },
+                {
+                  n: \"03\",
+                  title: \"Earn stars, come back tomorrow\",
+                  body: \"Stars save automatically. Come back for a fresh tip every day.\",
+                },
+              ].map((s) => (
+                <div key={s.n}>
+                  <span className=\"font-display text-5xl font-bold text-stone-300\">
+                    {s.n}
+                  </span>
+                  <h4 className=\"font-display mt-2 text-xl font-bold text-stone-900\">
+                    {s.title}
+                  </h4>
+                  <p className=\"mt-2 text-sm font-semibold text-stone-600\">
+                    {s.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className=\"border-t-[3px] border-stone-900 bg-white\">
+        <div className=\"mx-auto max-w-7xl px-5 sm:px-8 py-8 flex items-center justify-between text-sm font-semibold text-stone-700\">
+          <span className=\"inline-flex items-center gap-2\">
+            Made with <Heart strokeWidth={3} className=\"h-4 w-4 text-rose-500 fill-rose-400\" /> for 6th graders who don't give up.
+          </span>
+          <span>© Sparkleway</span>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Dashboard;
+"
+Observation: Create successful: /app/frontend/src/pages/Dashboard.jsx

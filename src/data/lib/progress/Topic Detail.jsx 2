@@ -1,0 +1,7 @@
+All tests pass. Let me quickly improve a11y on the stars group as flagged.
+Action: file_editor str_replace /app/frontend/src/pages/TopicDetail.jsx --old-str "              <div className=\"mt-4 flex items-center gap-1\" data-testid=\"stars-earned\">" --new-str "              <div
+                className=\"mt-4 flex items-center gap-1\"
+                data-testid=\"stars-earned\"
+                aria-label={`Earned ${correctCount} of ${totalQ} stars`}
+              >"
+Observation: Edit was successful.

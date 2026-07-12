@@ -1,0 +1,68 @@
+
+Action: file_editor create /app/frontend/src/components/MotivationalBanner.jsx --file-text "import React from \"react\";
+import { Sun, Sparkles, ArrowRight } from \"lucide-react\";
+import { getTodayTip } from \"@/data/tips\";
+
+export const MotivationalBanner = () => {
+  const tip = getTodayTip();
+  return (
+    <section
+      data-testid=\"motivational-banner\"
+      className=\"relative overflow-hidden rounded-3xl border-[3px] border-stone-900 brut-shadow-lg\"
+      style={{
+        background:
+          \"radial-gradient(120% 100% at 0% 0%, #FFE58A 0%, #FFC1B5 55%, #FFB7B2 100%)\",
+      }}
+    >
+      {/* decorative blobs */}
+      <div className=\"pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/30 border-[3px] border-stone-900\" />
+      <div className=\"pointer-events-none absolute -bottom-16 -left-10 h-56 w-56 rounded-full bg-emerald-200/60 border-[3px] border-stone-900\" />
+
+      <div className=\"relative grid gap-6 p-6 sm:p-10 md:grid-cols-[auto,1fr,auto] md:items-center\">
+        <div
+          className=\"hidden md:flex h-20 w-20 items-center justify-center rounded-2xl bg-white border-[3px] border-stone-900 brut-shadow-sm\"
+          aria-hidden
+        >
+          <Sun strokeWidth={3} className=\"h-10 w-10 text-amber-500\" />
+        </div>
+
+        <div>
+          <div
+            data-testid=\"banner-tag\"
+            className=\"inline-flex items-center gap-2 rounded-full border-[3px] border-stone-900 bg-white px-3 py-1 font-display text-xs sm:text-sm font-bold\"
+          >
+            <Sparkles strokeWidth={3} className=\"h-4 w-4\" />
+            Today's boost · {tip.tag}
+          </div>
+
+          <h1
+            data-testid=\"banner-quote\"
+            className=\"font-display mt-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.05] text-stone-900\"
+          >
+            {tip.quote}
+          </h1>
+
+          <p
+            data-testid=\"banner-tip\"
+            className=\"mt-4 max-w-2xl text-base sm:text-lg font-semibold text-stone-800\"
+          >
+            {tip.tip}
+          </p>
+        </div>
+
+        <a
+          href=\"#subjects\"
+          data-testid=\"banner-cta\"
+          className=\"justify-self-start md:justify-self-end font-display font-bold text-stone-900 inline-flex items-center gap-2 rounded-full border-[3px] border-stone-900 bg-white px-5 py-3 brut-shadow pressable\"
+        >
+          Pick a subject
+          <ArrowRight strokeWidth={3} className=\"h-5 w-5\" />
+        </a>
+      </div>
+    </section>
+  );
+};
+
+export default MotivationalBanner;
+"
+Observation: Create successful: /app/frontend/src/components/MotivationalBanner.jsx
